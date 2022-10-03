@@ -1,0 +1,45 @@
+version: '3'
+services:
+  database:
+    image: postgres:11.5
+    container_name: hackmd_db
+    environment:
+      - POSTGRES_USER=hackmd
+      - POSTGRES_PASSWORD=hackmdpass
+      - POSTGRES_DB=hackmd
+    volumes:
+      - $PWD/hackmd_db:/var/lib/postgresql/data
+    networks:
+      backend:
+    restart: always
+  app:
+    image: hackmdio/hackmd:2.4.2
+    container_name: hackmd
+    environment:
+      - CMD_DB_URL=postgres://hackmd:hackmdpass@database:5432/hackmd
+      - CMD_IMAGE_UPLOAD_TYPE=filesystem
+     # - CMD_ALLOW_ANONYMOUS=false
+     # - CMD_ALLOW_ANONYMOUS_EDITS=false
+     # - CMD_EMAIL=false
+     # - CMD_ALLOW_EMAIL_REGISTER=false
+     # - CMD_SAML_ATTRIBUTE_EMAIL=mail
+     # - CMD_LDAP_URL=ldap://rich.net
+     # - CMD_LDAP_BINDDN=CN=grafana,OU=Service,DC=rich,DC=net
+     # - CMD_LDAP_BINDCREDENTIALS=Ccna@123
+     # - CMD_LDAP_SEARCHBASE=OU=Admin,DC=rich,DC=net
+     # - CMD_LDAP_SEARCHFILTER=(sAMAccountName={{username}})
+     # - CMD_LDAP_PROVIDERNAME=RICH.NET
+     # - CMD_LDAP_USERIDFIELD=sAMAccountName
+    volumes:
+      - $PWD/uploads:/home/hackmd/app/public/uploads
+    ports:
+      - "3000:3000"
+    networks:
+      backend:
+    restart: always
+    depends_on:
+      - database
+    dns: 10.0.1.200
+networks:
+ backend:
+
