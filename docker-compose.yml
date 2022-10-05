@@ -18,18 +18,18 @@ services:
     environment:
       - CMD_DB_URL=postgres://hackmd:hackmdpass@database:5432/hackmd
       - CMD_IMAGE_UPLOAD_TYPE=filesystem
-     # - CMD_ALLOW_ANONYMOUS=false
-     # - CMD_ALLOW_ANONYMOUS_EDITS=false
-     # - CMD_EMAIL=false
-     # - CMD_ALLOW_EMAIL_REGISTER=false
-     # - CMD_SAML_ATTRIBUTE_EMAIL=mail
-     # - CMD_LDAP_URL=ldap://rich.net
-     # - CMD_LDAP_BINDDN=CN=grafana,OU=Service,DC=rich,DC=net
-     # - CMD_LDAP_BINDCREDENTIALS=Ccna@123
-     # - CMD_LDAP_SEARCHBASE=OU=Admin,DC=rich,DC=net
-     # - CMD_LDAP_SEARCHFILTER=(sAMAccountName={{username}})
-     # - CMD_LDAP_PROVIDERNAME=RICH.NET
-     # - CMD_LDAP_USERIDFIELD=sAMAccountName
+      - CMD_ALLOW_ANONYMOUS=false
+      - CMD_ALLOW_ANONYMOUS_EDITS=false
+      - CMD_EMAIL=false
+      - CMD_ALLOW_EMAIL_REGISTER=false
+      - CMD_SAML_ATTRIBUTE_EMAIL=mail
+      - CMD_LDAP_URL=ldap://rinrin.net
+      - CMD_LDAP_BINDDN=CN=wei,OU=AdminUser,DC=rinrin,DC=net   #use wei on AdminUser OU to comfirm
+      - CMD_LDAP_BINDCREDENTIALS=rinriN@rinrinnet
+      - CMD_LDAP_SEARCHBASE=CN=lin,OU=AdminUser,DC=rinrin,DC=net #useable OU with users
+      - CMD_LDAP_SEARCHFILTER=(sAMAccountName={{username}})
+      - CMD_LDAP_PROVIDERNAME=RINRIN.NET
+      - CMD_LDAP_USERIDFIELD=sAMAccountName
     volumes:
       - $PWD/uploads:/home/hackmd/app/public/uploads
     ports:
