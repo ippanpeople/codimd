@@ -24,16 +24,16 @@ services:
       - CMD_ALLOW_EMAIL_REGISTER=false
       - CMD_SAML_ATTRIBUTE_EMAIL=mail
       - CMD_LDAP_URL=ldap://rinrin.net
-      - CMD_LDAP_BINDDN=CN=wei,OU=AdminUser,DC=rinrin,DC=net   #use wei on AdminUser OU to comfirm
-      - CMD_LDAP_BINDCREDENTIALS=rinriN@rinrinnet
-      - CMD_LDAP_SEARCHBASE=CN=lin,OU=AdminUser,DC=rinrin,DC=net #useable OU with users
+      - CMD_LDAP_BINDDN=CN=codimd,OU=AdminUser,DC=rinrin,DC=net   #use wei on AdminUser OU to comfirm
+      - CMD_LDAP_BINDCREDENTIALS=rinriN@123
+      - CMD_LDAP_SEARCHBASE=OU=AdminUser,DC=rinrin,DC=net #useable OU with users
       - CMD_LDAP_SEARCHFILTER=(sAMAccountName={{username}})
       - CMD_LDAP_PROVIDERNAME=RINRIN.NET
       - CMD_LDAP_USERIDFIELD=sAMAccountName
     volumes:
       - $PWD/uploads:/home/hackmd/app/public/uploads
     ports:
-      - "3000:3000"
+      - "3333:3000"
     networks:
       backend:
     restart: always
